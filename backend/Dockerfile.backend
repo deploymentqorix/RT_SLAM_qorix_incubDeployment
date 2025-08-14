@@ -1,0 +1,28 @@
+FROM ros:humble-ros-base
+SHELL ["/bin/bash", "-c"]
+WORKDIR /app
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install ALL system dependencies in a single step
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-opencv \
+    git \
+    libeigen3-dev \
+    ros-humble-nav-msgs \
+    ros-humble-tf2-ros \
+    && rm -rf /var/lib/apt/lists/*
+
+# Automatically source ROS2 in new shells
+RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc && \
+    echo "if [ -f /app/install/setup.bash ]; then source /app/install/setup.bash; fi" >> /root/.bashrc
+
+# Copy and build the ROS2 workspace
+COPY ./ros2_nodes /app/src
+RUN source /opt/ros/humble/setup.bash && \
+    cd /app && \
+    colcon build
+
+# Copy and install Python packages
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt

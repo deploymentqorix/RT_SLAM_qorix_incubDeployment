@@ -1,0 +1,5 @@
+# Python packages for the backend services
+
+fastapi
+uvicorn[standard]
+websockets
