@@ -1,0 +1,58 @@
+services:
+  # --- FRONTEND SERVICE ---
+  frontend:
+    build: ./frontend
+    container_name: slam_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - data_streamer
+    networks: # <-- THIS IS THE CRITICAL FIX
+      - slam_net
+
+  # --- BACKEND SERVICES ---
+  ros_nodes:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    container_name: slam_ros_nodes
+    tty: true
+    command: /bin/bash
+    volumes:
+      - ./backend/ros2_nodes:/app/src
+    networks:
+      - slam_net
+
+  api_server:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    container_name: slam_api_server
+    command: /bin/bash -c "pip install -r requirements.txt && uvicorn api_server.main:app --host 0.0.0.0 --port 8000"
+    volumes:
+      - ./backend/api_server:/app/api_server
+      - ./backend/requirements.txt:/app/requirements.txt
+    ports:
+      - "8000:8000"
+    networks:
+      - slam_net
+
+  data_streamer:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    container_name: slam_data_streamer
+    command: /bin/bash -c "source /opt/ros/humble/setup.bash && python3 data_streamer/main.py"
+    volumes:
+      - ./backend/data_streamer:/app/data_streamer
+      - ./backend/requirements.txt:/app/requirements.txt
+    ports:
+      - "8765:8765"
+    networks:
+      - slam_net
+    depends_on:
+      - ros_nodes
+
+networks:
+  slam_net:
+    driver: bridge

@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #252526;
+  padding: 20px;
+  color: white;
+  border-bottom: 2px solid #61dafb;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  gap: 20px;
+}
+
+.map-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252526;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+canvas {
+  background-color: #1e1e1e;
+  border-radius: 4px;
+}
+
+.sidebar {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel {
+  background-color: #252526;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: left;
+}
+
+.panel h2 {
+  margin-top: 0;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+  color: #61dafb;
+}
+
+.panel p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.connected {
+  color: #4CAF50; /* Green */
+  font-weight: bold;
+}
+
+.disconnected {
+  color: #F44336; /* Red */
+  font-weight: bold;
+}
+
+/* --- NEW STYLES --- */
+.status-ok {
+  color: #4CAF50; /* Green */
+  font-weight: bold;
+}
+
+.status-error {
+  color: #F44336; /* Red */
+  font-weight: bold;
+}
+.map-container {
+  flex-grow: 1;
+  display: flex;
+  /* Remove justify-content and align-items */
+  background-color: #252526;
+  border-radius: 8px;
+  padding: 10px;
+  /* Add a defined height for the 3D canvas container */
+  height: 60vh; 
+}
