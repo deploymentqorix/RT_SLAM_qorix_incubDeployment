@@ -1,0 +1,32 @@
+{
+  "title": "RT_SLAM_AVOC - Design Document",
+  "author": "Abhishek Chauhan",
+  "figures": [
+    "Architecture.png",
+    "CSS.png",
+    "Component architecture.png",
+    "Components.drawio.png",
+    "Data Streaming.png",
+    "Mock api request flow.png",
+    "Project Orchestration.png",
+    "React App Entry Point - index.js.png",
+    "Request flow .drawio.png",
+    "SLAM System Architecture.png",
+    "build process flow.png",
+    "container setup.png",
+    "disconnect websocket.png",
+    "global css structure.png",
+    "multi stage build.png",
+    "package.json.png",
+    "polling & rendering.png",
+    "rendering flow.png",
+    "reportWebVitals.js - Sequence Flow.png",
+    "sequence flow.png",
+    "structure app.js.png",
+    "structure(1).png",
+    "structure(2).png",
+    "structure(3).png",
+    "structure.png",
+    "vehicle_pose.png"
+  ]
+}
